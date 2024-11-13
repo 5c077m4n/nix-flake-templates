@@ -1,1 +1,1 @@
-# nix-flake-templates
+# Nix Flake Templates
