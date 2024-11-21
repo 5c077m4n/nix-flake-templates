@@ -57,27 +57,27 @@
                 sdkPkgs:
                 with sdkPkgs;
                 [
-                  build-tools-34-0-0
+                  build-tools-35-0-0
                   cmdline-tools-latest
                   emulator
                   platform-tools
-                  platforms-android-34
+                  platforms-android-35
                 ]
                 ++ optionals (enbale-system-android-images && system == "aarch64-darwin") [
-                  system-images-android-34-google-apis-arm64-v8a
-                  system-images-android-34-google-apis-playstore-arm64-v8a
+                  system-images-android-35-google-apis-arm64-v8a
+                  system-images-android-35-google-apis-playstore-arm64-v8a
                 ]
                 ++
                   optionals (enbale-system-android-images && (system == "x86_64-darwin" || system == "x86_64-linux"))
                     [
-                      system-images-android-34-google-apis-x86-64
-                      system-images-android-34-google-apis-playstore-x86-64
+                      system-images-android-35-google-apis-x86-64
+                      system-images-android-35-google-apis-playstore-x86-64
                     ]
                 # Other useful packages for a development environment.
                 ++ optionals enable-other-useful-dev-pks [
-                  ndk-26-1-10909125
+                  ndk-27-2-12479018
                   skiaparser-3
-                  sources-android-34
+                  sources-android-35
                 ]
               );
             };
@@ -116,10 +116,6 @@
                   {
                     name = "JAVA_HOME";
                     value = jdk.home;
-                  }
-                  {
-                    name = "GRADLE_OPTS";
-                    value = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${androidHome}/build-tools/34.0.0/aapt2";
                   }
                   {
                     name = "PATH";
