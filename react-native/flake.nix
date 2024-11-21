@@ -49,7 +49,7 @@
               ];
             };
             enbale-system-android-images = true;
-            enable-other-useful-dev-pks = false;
+            enable-other-useful-dev-pks = true;
           in
           {
             packages = {
@@ -68,7 +68,7 @@
                   system-images-android-34-google-apis-playstore-arm64-v8a
                 ]
                 ++
-                  optionals (enbale-system-android-images && system == "x86_64-darwin" || system == "x86_64-linux")
+                  optionals (enbale-system-android-images && (system == "x86_64-darwin" || system == "x86_64-linux"))
                     [
                       system-images-android-34-google-apis-x86-64
                       system-images-android-34-google-apis-playstore-x86-64
@@ -87,6 +87,7 @@
               name = "React Native project";
 
               packages = with pkgs; [
+                git
                 android-sdk
                 jdk
                 nodejs_22
@@ -109,8 +110,16 @@
                     value = androidHome;
                   }
                   {
+                    name = "ANDROID_NDK_ROOT";
+                    value = "${androidHome}/ndk-bundle";
+                  }
+                  {
                     name = "JAVA_HOME";
                     value = jdk.home;
+                  }
+                  {
+                    name = "GRADLE_OPTS";
+                    value = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${androidHome}/build-tools/34.0.0/aapt2";
                   }
                   {
                     name = "PATH";
